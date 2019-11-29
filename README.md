@@ -1,4 +1,4 @@
-# CoapServer
+# CoapSimulate
 
 # Setup
 
