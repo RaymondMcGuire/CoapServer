@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResponse;
 import org.eclipse.californium.core.Utils;
+import org.eclipse.californium.core.coap.MediaTypeRegistry;
 import org.eclipse.californium.elements.exception.ConnectorException;
 import org.eclipse.californium.core.network.config.NetworkConfig;
 import org.eclipse.californium.core.network.config.NetworkConfigDefaultHandler;
@@ -56,11 +57,15 @@ public class CoapClientMain {
 
 			CoapResponse response = null;
 			try {
+				//修改服务器端数值,只针对  write_demo
+				//response = client.put("noob", MediaTypeRegistry.TEXT_PLAIN);
+				
+				//获取服务器上数据
 				response = client.get();
 			} catch (ConnectorException | IOException e) {
 				System.err.println("Got an error: " + e);
 			}
-
+			
 			if (response!=null) {
 				
 				System.out.println(response.getCode());
