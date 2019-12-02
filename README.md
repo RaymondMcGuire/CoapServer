@@ -1,5 +1,6 @@
-# CoapServer
+# CoapSimulate
 
 # Setup
 
-用Eclipse打开时，将CoapSimulate设置为Workspace
+## eclipse
+- add the external library(./extlib) to project "coap_server" and "coap_client".
