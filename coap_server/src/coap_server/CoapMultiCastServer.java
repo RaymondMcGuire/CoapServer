@@ -1,5 +1,6 @@
 package coap_server;
 
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.util.Random;
@@ -31,7 +32,9 @@ public class CoapMultiCastServer {
 
 	private static CoapEndpoint createEndpoints(NetworkConfig config) throws UnknownHostException {
 		int port = config.getInt(Keys.COAP_PORT);
-		InetSocketAddress localAddress = new InetSocketAddress(port);
+		InetAddress addr = InetAddress.getByName("127.0.0.2");
+		InetSocketAddress localAddress = new InetSocketAddress(addr,port);
+        
 		Connector connector = new UdpMulticastConnector(localAddress, CoAP.MULTICAST_IPV4);
 		return new CoapEndpoint.Builder().setNetworkConfig(config).setConnector(connector).build();
 	}
