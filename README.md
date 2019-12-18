@@ -2,10 +2,10 @@
 
 # Setup
 
-## eclipse
+## Eclipse
 - add the external library(./extlib) to project "coap_server" and "coap_client".
 
-## for MacOS
+## For MacOS
 
 The multicast server demo may cause the error suck like "`Can't assign requested address` java.net.SocketException using Ehcache multicast".
 
