@@ -2,10 +2,10 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="D:/poject/iot/CoapSimulate/extlib/californium-core-2.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="D:/poject/iot/CoapSimulate/extlib/element-connector-2.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="D:/poject/iot/CoapSimulate/extlib/element-connector-tcp-netty-2.0.0-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="D:/poject/iot/CoapSimulate/extlib/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="lib" path="D:/poject/iot/CoapSimulate/extlib/slf4j-simple-1.7.5.jar"/>
+	<classpathentry kind="lib" path="D:/poject/iot/CoapSimulate/extlib/californium-core-2.1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="D:/poject/iot/CoapSimulate/extlib/element-connector-2.1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="D:/poject/iot/CoapSimulate/extlib/element-connector-tcp-netty-2.1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

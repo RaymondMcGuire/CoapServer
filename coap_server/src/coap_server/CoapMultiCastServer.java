@@ -32,7 +32,7 @@ public class CoapMultiCastServer {
 
 	private static CoapEndpoint createEndpoints(NetworkConfig config) throws UnknownHostException {
 		int port = config.getInt(Keys.COAP_PORT);
-		InetAddress addr = InetAddress.getByName("127.0.0.2");
+		InetAddress addr = InetAddress.getByName("127.0.0.1");
 		InetSocketAddress localAddress = new InetSocketAddress(addr,port);
         
 		Connector connector = new UdpMulticastConnector(localAddress, CoAP.MULTICAST_IPV4);

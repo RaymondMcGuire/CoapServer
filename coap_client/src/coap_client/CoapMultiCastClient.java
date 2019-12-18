@@ -48,7 +48,7 @@ public class CoapMultiCastClient {
 		CoapEndpoint endpoint = new CoapEndpoint.Builder().setNetworkConfig(config).build();
 		CoapClient client = new CoapClient();
 
-		client.setURI("coap://127.0.0.2:5685/helloWorld");
+		client.setURI("coap://127.0.0.1:5685/helloWorld");
 		client.setEndpoint(endpoint);
 
 		Request request = Request.newGet();
