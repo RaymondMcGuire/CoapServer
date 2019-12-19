@@ -7,7 +7,7 @@
 
 ## For MacOS
 
-The multicast server demo may cause the error suck like "`Can't assign requested address` java.net.SocketException using Ehcache multicast".
+The multicast server demo may cause the error such like "`Can't assign requested address` java.net.SocketException using Ehcache multicast".
 
 In Eclipse, you can right click your project and select "Run As", then select "Run Configurations...". Append "-Djava.net.preferIPv4Stack=true" into VM arguments and click "Apply".
 
