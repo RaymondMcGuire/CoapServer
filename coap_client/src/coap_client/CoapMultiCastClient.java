@@ -7,6 +7,7 @@ import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapHandler;
 import org.eclipse.californium.core.CoapResponse;
 import org.eclipse.californium.core.Utils;
+import org.eclipse.californium.core.coap.MediaTypeRegistry;
 import org.eclipse.californium.core.coap.CoAP;
 import org.eclipse.californium.core.coap.CoAP.Type;
 import org.eclipse.californium.core.coap.Request;
@@ -40,15 +41,30 @@ public class CoapMultiCastClient {
 		}
 
 	};
+	
+	private static boolean light_1 = false;
+	
+	private static void Light1StatusChange(boolean b_light) {
+		light_1 = b_light;
+	}
+	
+	private static boolean GetLight1Status() {
+		return light_1;
+	}
 
 	public static void main(String args[]) {
-
+		
+		// define light status
+		Light1StatusChange(true);
+		
+		//
 		NetworkConfig config = NetworkConfig.createWithFile(CONFIG_FILE, CONFIG_HEADER, DEFAULTS);
 
 		CoapEndpoint endpoint = new CoapEndpoint.Builder().setNetworkConfig(config).build();
 		CoapClient client = new CoapClient();
-
-		client.setURI("coap://127.0.0.1:5685/helloWorld");
+		
+		// get lightings status
+		client.setURI("coap://127.0.0.1:5685/iot_lightings");
 		client.setEndpoint(endpoint);
 
 		Request request = Request.newGet();
@@ -56,7 +72,10 @@ public class CoapMultiCastClient {
 
 		CoapResponse response = null;
 		try {
-			// sends an uni-cast request
+			
+			// update light1 status
+			client.put(String.valueOf(GetLight1Status()), MediaTypeRegistry.TEXT_PLAIN);
+			// get light1 status
 			response = client.advanced(request);
 		} catch (ConnectorException | IOException e) {
 			System.err.println("Error occurred while sending request: " + e);

@@ -69,7 +69,6 @@ public class CoapServerMain extends CoapServer {
 				builder.setNetworkConfig(config);
 				addEndpoint(builder.build());
 			}
-
 		}
 	}
 

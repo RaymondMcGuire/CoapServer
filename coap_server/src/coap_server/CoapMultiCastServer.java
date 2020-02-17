@@ -1,5 +1,8 @@
 package coap_server;
 
+import static org.eclipse.californium.core.coap.CoAP.ResponseCode.BAD_REQUEST;
+import static org.eclipse.californium.core.coap.CoAP.ResponseCode.CHANGED;
+
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
@@ -26,7 +29,9 @@ public class CoapMultiCastServer {
 		CoapEndpoint endpoint = createEndpoints(config);
 		CoapServer server = new CoapServer(config);
 		server.addEndpoint(endpoint);
-		server.add(new HelloWorldResource());
+		
+		// lightings
+		server.add(new IOT_Lightings());
 		server.start();
 	}
 
@@ -39,24 +44,39 @@ public class CoapMultiCastServer {
 		return new CoapEndpoint.Builder().setNetworkConfig(config).setConnector(connector).build();
 	}
 
-	private static class HelloWorldResource extends CoapResource {
+	private static class IOT_Lightings extends CoapResource {
 
-		private int id;
+		private int light_id;
+		private boolean open;
 
-		private HelloWorldResource() {
-			// set resource identifier
-			super("helloWorld");
-			// set display name
-			getAttributes().setTitle("Hello-World Resource");
-			id = new Random(System.currentTimeMillis()).nextInt(100);
-			System.out.println("coap server: " + id);
+		private IOT_Lightings() {
+			super("iot_lightings");
+			getAttributes().setTitle("IOT Lightings");
+			light_id = new Random(System.currentTimeMillis()).nextInt(100);
+			open = false;
+			System.out.println("light id: " + light_id);
 		}
 
-		@Override
-		public void handleGET(CoapExchange exchange) {
-			// respond to the request
-			exchange.respond("Hello World! " + id);
-		}
+        @Override
+        public void handleGET(CoapExchange exchange) {
+            exchange.respond(String.valueOf(open));
+        }
+
+        @Override
+        public void handlePUT(CoapExchange exchange) {
+            byte[] payload = exchange.getRequestPayload();
+
+            try {
+            	String newVal = new String(payload, "UTF-8");
+            	System.out.println("Update IOT Light1 status:"+ open+" ->" + newVal);
+            	open = Boolean.valueOf(newVal);
+                
+                exchange.respond(CHANGED, String.valueOf(open));
+            } catch (Exception e) {
+                e.printStackTrace();
+                exchange.respond(BAD_REQUEST, "Invalid String");
+            }
+        }
 	}
 }
 
